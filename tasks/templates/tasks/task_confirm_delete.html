@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>删除任务 - 待办事项</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .card h2 {
+            color: #333;
+            margin-bottom: 12px;
+            font-size: 1.4rem;
+        }
+
+        .card p {
+            color: #888;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .task-name {
+            font-weight: 700;
+            color: #dc3545;
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+            word-break: break-word;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 11px 28px;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #e0e0e0;
+            color: #666;
+        }
+
+        .btn-outline:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="icon">🗑️</div>
+            <h2>确认删除</h2>
+            <p>你确定要删除这个任务吗？此操作不可撤销。</p>
+            <div class="task-name">"{{ task.title }}"</div>
+            <form method="POST" class="form-actions">
+                {% csrf_token %}
+                <a href="{% url 'task_list' %}" class="btn btn-outline">取消</a>
+                <button type="submit" class="btn btn-danger">确认删除</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
